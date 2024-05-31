@@ -7,11 +7,18 @@ pool:
 jobs:
   - job: job1
     steps:
-    - script: echo Hello, world changed!
+    - script: echo running job 1
       displayName: 'Run a one-line script'
-  - job: job2
+  - job: job3
+    dependsOn: job1
     steps:
     - script: |
-        echo Add other tasks to build, test, and deploy your project.
-        echo See https://aka.ms/yaml
+        echo running job 2
       displayName: 'Run a multi-line script'
+  - job: job2
+    dependsOn: job1
+    displayName: 'Run a multi-line script'
+    steps:
+    - script: |
+        echo Running job 3
+        
