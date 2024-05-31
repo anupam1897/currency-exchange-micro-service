@@ -17,4 +17,19 @@ stages:
     - bash: echo $(System.DefaultWorkingDirectory)
     - bash: ls -R $(System.DefaultWorkingDirectory)
     - bash: echo $(Build.ArtifiactStaginDirectory)
+    - bash: java -version
+    - bash: node --version
+    - bash: mvn -version
+    - bash: python --version
+    - bash: echo $(Build.ArtifiactStaginDirectory)
+
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: |
+          **/*.yaml
+          **/*.tf
+        TargetFolder: '(Build.ArtifiactStaginDirectory)'
+
+    - bash: echo $(Build.ArtifiactStaginDirectory)
 
