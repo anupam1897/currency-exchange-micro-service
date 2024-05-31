@@ -9,20 +9,6 @@ stages:
   jobs:
   - job: FirstJob
     steps:
-    - bash: echo $(PipelineLevelVariable)
-    - bash: echo $(Build.BuildNumber)
-    - bash: echo $(Build.BuildId)
-    - bash: echo $(Build.SourceBranchName)
-    - bash: echo $(Build.SourceDirectory)
-    - bash: echo $(System.DefaultWorkingDirectory)
-    - bash: ls -R $(System.DefaultWorkingDirectory)
-    - bash: echo $(Build.ArtifiactStaginDirectory)
-    - bash: java -version
-    - bash: node --version
-    - bash: mvn -version
-    - bash: python --version
-    - bash: ls -R $(Build.ArtifiactStaginDirectory)
-
     - task: CopyFiles@2
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)'
