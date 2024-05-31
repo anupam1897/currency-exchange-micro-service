@@ -21,7 +21,7 @@ stages:
     - bash: node --version
     - bash: mvn -version
     - bash: python --version
-    - bash: echo $(Build.ArtifiactStaginDirectory)
+    - bash: ls -R $(Build.ArtifiactStaginDirectory)
 
     - task: CopyFiles@2
       inputs:
@@ -31,5 +31,5 @@ stages:
           **/*.tf
         TargetFolder: '(Build.ArtifiactStaginDirectory)'
 
-    - bash: echo $(Build.ArtifiactStaginDirectory)
+    - bash: ls -R $(Build.ArtifiactStaginDirectory)
 
