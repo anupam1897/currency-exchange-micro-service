@@ -23,7 +23,7 @@ stages:
     - bash: echo build Second DevDeploy
 - stage: QADeploy
   jobs:
-  - job: First QADeploy
+  - job: FirstQADeploy
     steps:
     - bash: echo build First QADeploy
   - job: SecondJob
@@ -31,7 +31,7 @@ stages:
     - bash: echo build Second QADeploy
 - stage: prodDeploy
   jobs:
-  - job: First prodDeploy
+  - job: FirstprodDeploy
     steps:
     - bash: echo build First prodDeploy
   - job: SecondJob
