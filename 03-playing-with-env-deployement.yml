@@ -1,0 +1,39 @@
+
+
+trigger:
+- main
+
+# strategy:
+#   matrix:
+#     linux:
+#       operatingSystem: 'ubuntu-latest'
+#     mac: 
+#       operatingSystem: 'macos-latest'
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages: 
+- stage: build
+  jobs:
+  - job: BuildJob
+    steps:
+    - bash: echo do  the build! 
+- stage: devDeploy
+  jobs:
+  - deployment: DevDeployJOb
+    environment: Dev
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - script: echo deploy to dev
+- stage: dQADeploy
+  jobs:
+  - deployment: QADeployJOb
+    environment: QA
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - script: echo deploy to QA
+

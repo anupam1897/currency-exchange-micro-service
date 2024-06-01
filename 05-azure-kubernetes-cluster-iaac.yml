@@ -1,0 +1,40 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+
+steps:
+- script: echo k8s terraform azure
+  displayName: 'Run a one-line script'
+- task: DownloadSecureFile@1
+  name: publickey
+  inputs:
+    secureFile: 'azure_rsa.pub'
+    retryCount: '5'
+
+- task: TerraformCLI@2
+  inputs:
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    # commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret)) -var ssh_public_key=$(publickey.secureFilePath)'
+    backendType: 'azurerm'
+    backendServiceArm: 'azure-resource-service-connection'
+    backendAzureRmTenantId: '7630db64-5aec-4a5d-b5bc-943483c4d7c4'
+    backendAzureRmSubscriptionId: 'c89be416-9318-4944-96a4-e2d8007c5726'
+    ensureBackend: true
+    backendAzureRmResourceGroupName: 'terraform-backend-rg'
+    backendAzureRmResourceGroupLocation: 'westeurope'
+    backendAzureRmStorageAccountName: 'storageaccountazuretest'
+    backendAzureRmContainerName: 'storageaccountazurecontainer'
+    backendAzureRmKey: 'kubernetes-dev.tfstate'
+    allowTelemetryCollection: true
+- task: TerraformCLI@2
+  inputs:
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    environmentServiceName: 'azure-resource-service-connection'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret)) -var ssh_public_key=$(publickey.secureFilePath)'
+    # providerAzureRmSubscriptionId: 'c89be416-9318-4944-96a4-e2d8007c5726'
+    allowTelemetryCollection: false
