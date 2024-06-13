@@ -24,9 +24,6 @@ This repository contains everything you need to deploy a Currency Exchange Micro
 - **Kubernetes**: For container orchestration
 
 ## Architecture
-
-![Architecture Diagram](path_to_architecture_diagram)
-
 1. **Source Code Management**: Managed in GitHub.
 2. **CI/CD Pipelines**: Managed in Azure DevOps.
 3. **Infrastructure Provisioning**: Handled by Terraform, creating necessary Azure resources.
