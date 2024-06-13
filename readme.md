@@ -34,11 +34,6 @@ create table exchange_value
 )
 ```
 
-## Containerization
-### Creating Container
-
-- mvn package
-
 ### Running Container
 
 #### Basic
