@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: currency-exchange
-        image: in28min/currency-exchange-devops
+        image: anupam1897/currency-exchange-devops:18
         imagePullPolicy: IfNotPresent
         ports:
         - name: liveness-port
