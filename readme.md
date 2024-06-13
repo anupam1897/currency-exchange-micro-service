@@ -1,7 +1,5 @@
 # Currency Exchange Micro Service
 
-Run com.in28minutes.microservices.currencyconversionservice.CurrencyConversionServiceApplicationH2 as a Java Application.
-
 ## Resources
 
 - http://localhost:8000/currency-exchange/from/USD/to/INR
@@ -45,5 +43,6 @@ create table exchange_value
 
 #### Basic
 ```
-docker container run --publish 8000:8000 in28min/currency-exchange:0.0.1-SNAPSHOT
+docker container run --publish 8000:8000 anupam1897/currency-exchange-devops:18
+
 ```
